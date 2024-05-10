@@ -11,15 +11,21 @@ using UnityEngine.Networking.Types;
 public class Dragable : MonoBehaviour, IBeginDragHandler,IDragHandler, IEndDragHandler
 {
     Transform instensesPanel;
+    public GameObject rightpoint, leftpoint;
+
 
     private void Start()
     {
         instensesPanel = GameObject.Find("Instenses").transform;
+        rightpoint = transform.GetChild(0).transform.gameObject;
+        leftpoint = transform.GetChild(1).transform.gameObject;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         transform.SetParent(instensesPanel);
+        rightpoint.GetComponent<BlockComponent>().OverrideExistence(false);
+        leftpoint.GetComponent<BlockComponent>().OverrideExistence(false);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -54,5 +60,7 @@ public class Dragable : MonoBehaviour, IBeginDragHandler,IDragHandler, IEndDragH
                 transform.SetParent(instensesPanel);
             }
         }
+        rightpoint.GetComponent<BlockComponent>().OverrideExistence(true);
+        leftpoint.GetComponent<BlockComponent>().OverrideExistence(true);
     }
 }

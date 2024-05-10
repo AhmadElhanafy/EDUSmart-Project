@@ -17,6 +17,9 @@ public class UIManager : MonoBehaviour
 
     public void OpenProjectScene()
     {
-        SceneManager.LoadScene("ProjectScene");
+        GameObject projectsView = GameObject.Find("ProjectsViewContent"); 
+        Instantiate(Resources.Load("Project"), projectsView.transform);
+
+        //SceneManager.LoadScene("ProjectScene");
     }
 }
